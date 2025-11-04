@@ -18,14 +18,14 @@ formatted=f"{song.title()} - {author.title()}"
 print(formatted)
 
 #replace command 
-location  = str(input("Enter the location to pick up"))
+location  = str(input("Enter the location to pick up: "))
 new_location=str(input("Enter updated location to pick up: "))
 fixed_location=location.replace(location,new_location)
 print(fixed_location) 
 
 #split  command 
 password="mani.123"
-text=password.split(("."))
+text=password.split(("2"))
 print (text)
 message="This is your user id: 17265, Do not share with anyone" #the task is to print the user id from the messagge"
 user_id=message.split(":")[1].split(",")[0].strip() #strip function removes the extra space
