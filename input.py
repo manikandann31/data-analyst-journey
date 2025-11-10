@@ -16,6 +16,6 @@ print("Generated Email =", email)
 A=int(input("Enter the value to display:"))
 print("The Entered value is :",A)
  
-name=sys.argv[3]
+name=sys.argv[3] #indha bracket la posura three ,namma run pamra command la kkudukura variables oda count ah define panudhu 
 print(name)
 
