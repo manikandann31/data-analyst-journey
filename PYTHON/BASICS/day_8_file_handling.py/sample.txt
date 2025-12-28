@@ -1,0 +1,4 @@
+maths,70
+english,80
+tamil,100
+social,60
