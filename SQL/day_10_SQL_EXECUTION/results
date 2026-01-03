@@ -1,0 +1,50 @@
+
+#OUTPUT OF QUERRY 1 
+reg_no	name	result	MARKS
+1	allen	pass	70
+2	som	pass	80
+3	cree	pass	100
+4	alpha	fail	90
+5	phen	pass	80
+6	deen	pass	60
+
+cid	name	type	notnull	dflt_value	pk
+0	driver_id	INT	0	NULL	1
+1	driver_name	VARCHAR(100)	0	NULL	0
+2	license_no	VARCHAR(50)	0	NULL	0
+
+#OURT PUT OF QUERRT 2
+cid	name	type	notnull	dflt_value	pk
+0	rider_id	INT	0	NULL	1
+1	driver_id	INT	0	NULL	0
+2	pickup_location	VARCHAR(100)	0	NULL	0
+3	drop_location	VARCHAR(100)	0	NULL	0
+4	ride_date	DATETIME	0	NULL	0
+5	fare	DECIMAL(10,2)	0	NULL	0
+driver_id	driver_name	license_no
+101	john	abc123
+102	doe	def456
+
+SQL ▼
+	
+1
+ / 1		 1 - 4 of 4
+
+rider_id	driver_id	pickup_location	drop_location	ride_date	fare
+301	101	chennai	madurai	2026-1-1 12:00:00	500
+304	101	chennai	vpm	2026-2-5 12:50:00	1000
+307	102	chennai	cuddalore	2026-3-7 12:10:00	1500
+308	102	cuddalore	madurai	2026-4-15 2:00:00	50000
+
+COUNT (*)
+4
+COUNT (*)
+3
+sum(fare)
+53000
+avg(fare)
+13250.0
+max(fare)
+50000
+min(fare)
+500
