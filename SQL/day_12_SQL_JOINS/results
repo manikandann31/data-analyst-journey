@@ -1,0 +1,65 @@
+results of exercise.SQL
+SQL ▼
+	
+1
+ / 1		  1 - 10 of 10
+
+course_name	student_name
+Python for Data Analysis	Arun
+SQL Mastery	Arun
+Python for Data Analysis	Bala
+Machine Learning Intro	Charan
+Web Development Basics	Divya
+Python for Data Analysis	Esha
+Machine Learning Intro	Esha
+Cloud Fundamentals	Farhan
+SQL Mastery	Gokul
+Web Development Basics	Gokul
+
+SQL ▼
+	
+1
+ / 1		 1 - 5 of 5
+
+course_name	no_of_students
+Cloud Fundamentals	1
+Machine Learning Intro	2
+Python for Data Analysis	3
+SQL Mastery	2
+Web Development Basics	2
+
+SQL ▼
+	
+1
+ / 1		 1 - 5 of 5
+
+course_name	total_price
+Cloud Fundamentals	3500
+Machine Learning Intro	8000
+Python for Data Analysis	9000
+SQL Mastery	NULL
+Web Development Basics	4000
+
+SQL ▼
+	
+1
+ / 1		 1 - 0 of 0
+
+
+SQL ▼
+	
+1
+ / 1		 1 - 3 of 3
+
+student_enrolled_more_than_one_course
+Arun
+Esha
+Gokul
+
+SQL ▼
+	
+1
+ / 1		 1 - 1 of 1
+
+category	total_enrollments
+Data	5
