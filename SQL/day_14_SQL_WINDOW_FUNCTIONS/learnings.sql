@@ -43,6 +43,10 @@ rank() OVER (
     ) AS top_course
 FROM courses;
 --For each student, assign a number to each enrollment
-select student_name,country,
-ROW_NUMBER() OVER (PARTITION BY student_name ORDER BY student_id ) AS enrollment
-from students;
+select s.student_name,e.enroll_date,
+ROW_NUMBER() OVER (
+   
+    ORDER BY date(e.enroll_date) ) AS enrollment_order
+FROM enrollments e
+join students s 
+    on e.student_id=s.student_id;
