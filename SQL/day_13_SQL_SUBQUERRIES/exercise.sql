@@ -47,6 +47,55 @@ from students as s
 left join enrollments as e 
     on s.student_id = e.student_id
 WHERE e.student_id is null;
-
-
+--Find students whose total spending is greater than the average spending per student.
+SELECT s.student_id,s.student_name,sum(c.price) as spending
+FROM students as s 
+JOIN enrollments as e
+    on s.student_id=e.student_id 
+JOIN courses as c 
+    on c.course_id=e.course_id
+group by s.student_id,student_name
+having sum(c.price)>                                        --this is outer querry which compare each spending and finds the largest
+    select avg(student_spending)                              --this is middle querrry which finds rthe average spending across students
+    FROM(
+        select e2.student_id,sum(c2.price) as student_spending --
+        from enrollments as e2                                 --
+        join courses as c2                                    --this is ine=ner querry which find the toal spending per student 
+            on c2.course_id=e2.course_id                      --
+        group by e2.student_id                                --
+    )
+);
+--Find courses where all enrollments are completed.
+select course_id from courses 
+WHERE course_id not in (
+    SELECT course_id
+    from enrollments
+    WHERE status='ongoing'
+);
+--Find the category that generated the highest total revenue.
+SELECT c.category,sum(c.price) as revenue
+FROM courses c
+join enrollments e 
+    on c.course_id=e.course_id
+group by c.category
+order by revenue DESC
+limit 1;
+--Find students who have enrolled in more than one course category.
+select s.student_name,e.student_id,count(DISTINCT c.category) as no_of_courses
+FROM enrollments e 
+join students s 
+    on s.student_id=e.student_id
+JOIN courses c
+    on e.course_id=c.course_id
+group by e.student_id 
+having count(distinct c.category)>1;
+--Find courses that were enrolled but never completed by any student.
+select DISTINCT c.course_id 
+from courses c
+join enrollments e 
+    on c.course_id=e.course_id 
+where c.course_id not in(
+    select e.course_id 
+    from enrollments
+    where e.status='completed')
 
