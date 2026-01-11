@@ -1,3 +1,7 @@
+SELECT*from students;
+SELECT*from courses;
+SELECT*from enrollments;
+
 --Show course names along with enrolled student names.
 SELECT c.course_name,s.student_name 
 FROM enrollments as e
@@ -38,5 +42,34 @@ on c.course_id=e.course_id
 group by c.category
 having count(e.enrollment_id)>3
 order by c.course_id;
-
-
+--Find students who have completed at least one course.
+select s.student_name,count(c.course_id) as no_of_courses
+FROM students as s
+JOIN enrollments as e
+    on s.student_id=e.student_id
+join courses as c
+    on c.course_id=e.course_id
+group by s.student_name
+HAVING count(c.course_id)>=1;
+--Find the course that generated the highest revenue.
+SELECT c.course_name,sum(c.price)as total_revenue
+from courses as c 
+join enrollments as e
+    on c.course_id=e.course_id
+WHERE c.price is not NULL  --null handling is used here 
+group by c.course_id,c.course_name
+ORDER by total_revenue DESC
+limit 1;
+--Find students who never enrolled in any course.
+select student_name 
+FROM students 
+where student_id not in (
+select student_id from enrollments);
+--Find total revenue generated country-wise.
+SELECT s.country,sum(c.price) as revenue
+FROM students as s
+join enrollments as e
+    on s.student_id = e.student_id 
+join courses as c
+    on c.course_id=e.course_id
+group by country;
