@@ -6,7 +6,7 @@ from enrollments
 group by enroll_month
 order by enroll_month;
 
---MoM ANALYSIS 
+--2.MoM ANALYSIS 
 with monthly_data as (
 SELECT 
     strftime('%Y-%m',e.enroll_date) as enroll_month,  --STRFTIME is a function used in sqlite to extract month and year from the enroll date from the enrollments table 
@@ -26,7 +26,30 @@ SELECT
         order by enroll_month) AS growth
 from monthly_data
 ORDER BY enroll_month;
---
+--3.category wise monthly trend
+with monthly_data as (
+SELECT c.category,
+    strftime('%Y-%m',enroll_date) as enroll_month,
+    count(*) as no_of_enrolls
+from enrollments as e 
+JOIN courses as c 
+    on e.course_id=c.course_id
+group by c.category,enroll_month
+order by enroll_month,c.category
+)
+SELECT 
+    category,
+    enroll_month,
+    no_of_enrolls,
+    lag(no_of_enrolls)over(
+        PARTITION BY category
+        order by enroll_month) AS previous_month,               --growth is not only a total its a copmparison between previous count and current count so we have to subract the current count with the previous count to get the growth by month 
+    no_of_enrolls-lag(no_of_enrolls)over(
+        PARTITION BY category
+        order by enroll_month) AS growth
+from monthly_data
+ORDER BY category,enroll_month;
+
 
 
 
